@@ -1,0 +1,182 @@
+#include "DS.h"
+
+/* p-ийн зааж буй List-д x утгыг төгсгөлд хийнэ */
+void l_push_back(List *p, int x)
+{
+	p->list.len++;
+  p->list.a[p->list.len-1]=x;
+}
+
+/* p-ийн зааж буй List-д x утгыг эхэнд хийнэ
+   Бүх элементүүд нэг нэг байрлал хойшилно.
+ */
+void l_push_front(List *p, int x)
+{
+	if(p->list==0){
+    p->list.len++;
+    p->list.a[0]=x;
+  } else {
+    p->list.len++;
+    for(int i=p->list.len; i > 0; i--){
+      p->list.a[i]=p->list.a[i-1];
+    }
+    p->list.a[0]=x;
+  }
+}
+
+/*
+  p-ийн зааж буй List-д x утгыг pos байрлалд хийнэ
+  pos болон түүнээс хойшхи элементүүд нэг байрлал ухарна.
+  Тухайн байрлал List-ийн сүүлийн индексээс их бол төгсгөлд орно.
+ */
+void l_insert(List *p, int x, int pos)
+{
+	if(pos >p->list.len){
+    p->list.len++;
+    p->list.a[p->list.len-1]=x;
+  } else {
+    p->list.len++;
+    for(int i=p->list.len; i > pos; i--){
+      p->list.a[i]=p->list.a[i-1];
+    }
+    p->list.a[pos]=x;
+  }
+}
+
+
+/* p-ийн зааж буй List-н эхлэлээс гаргана.
+   List-ийн бүх элементүүд нэг нэг байрлал урагшилна
+ */
+void l_pop_front(List *p)
+{
+	if(p->list.len > 0){
+    for(int i = 0; i<p->list.len-1; i++){
+      p->list.a[i] = p->list.a[i+1];
+    }
+    p->list.len--;
+  }
+}
+
+/* p-ийн зааж буй List-н төгсгөлөөс гаргана */
+void l_pop_back(List *p)
+{
+  if(p->list.len != -1){
+    p->list.len--;
+  }
+}
+
+/* p-ийн зааж буй List-н pos байрлалаас гаргана.
+   pos болон түүнээс хойшхи элементүүд нэг байрлал урагшилна.
+   pos байрлалаас гарах боломжгүй бол юу ч хийхгүй.
+ */
+void l_erase(List *p, int pos)
+{
+      if(p->list.len != 0){
+        for(int i = pos; i < p->list.len; i++){
+          p->list.a[i]=p->list.a[i+1];
+        }
+        p->list.len--;
+      }
+}
+
+/* p-ийн зааж буй List-н утгуудыг хэвлэнэ */
+void l_print(List *p)
+{
+        int i;
+        for (i = 0; i < p->l_len; i++) {
+                printf("%d ", p->l_arr[i]);
+        }
+        printf("\n");
+}
+
+/* p-ийн зааж буй List-с x тоог хайн олдсон байрлалаыг буцаана.
+   Олдохгүй бол -1 утгыг буцаана.
+ */
+int l_search(List *p, int x)
+{
+	for(int i =0; i <p->list.len; i++){
+    if(p->list.a[i] == x){
+      return i;
+    }
+  }
+  return -1;
+}
+
+
+
+
+
+
+
+#include "DS.h"
+/*
+  p-ийн зааж буй Stack-т x утгыг оруулна
+ */
+void s_push(Stack *p, int x)
+{
+        p->stack.len++;
+        p->stack.a[p->stack.len-1] =x;
+}
+/*
+  p-ийн зааж буй Stack-аас гарах функц
+ */
+void s_pop(Stack *p)
+{
+        if(p->stack.len != -1){
+                p->stack.len--;
+        }
+}
+
+void s_print(Stack *p)
+{
+        int i;
+        for (i = 0; i < p->s_len; i++) {
+                printf("%d ", p->s_arr[i]);
+        }
+        printf("\n");
+}
+
+
+
+
+
+
+
+
+
+
+#include "DS.h"
+
+/* p-ийн зааж буй Queue-д x утгыг хийнэ */
+void q_push(Queue *p, int x)
+{
+        p->queue.len++;
+        p->queue.a[p->queue.len-1]=x;
+}
+
+/* p-ийн зааж буй Queue-с гаргана */
+void q_pop(Queue *p)
+{
+        if(p->queue.len > 0){
+                for(int i=0; i <p->queue.len-1; i++){
+                        p->queue.a[i] = p->queue.a[i+1];
+                }
+                p->queue.len--;
+        }
+}
+
+/* p-ийн зааж буй Queue-н утгуудыг хэвлэнэ */
+void q_print(Queue *p)
+{
+        int i;
+        for (i = 0; i < p->q_len; i++) {
+                printf("%d ", p->q_arr[i]);
+        }
+        printf("\n");
+}
+
+
+
+
+
+
